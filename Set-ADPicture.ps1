@@ -18,27 +18,18 @@ function Test-Null($InputObject) { return !([bool]$InputObject) }
 if (Test-Connection -Computername $env:USERDNSDOMAIN -BufferSize 16 -Count 1 -Quiet)
 {
     Write-Verbose "PC can connect to $env:USERDNSDOMAIN, PC is online and connected to the Corprate network"
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> origin/master
     # Get sid and photo for current user
     $user = ([ADSISearcher]"(&(objectCategory=User)(SAMAccountName=$env:username))").FindOne().Properties
     $user_photo = $user.thumbnailphoto
     $user_sid = [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> origin/master
     # Continue if an image was returned
     If ((Test-Null $user_photo) -eq $false) {
         Write-Verbose "Photo exists in Active Directory."
     }
     # If no image was found in profile, use one from network share.
     Else {
-<<<<<<< HEAD
         Write-Verbose "No photo found in Active Directory for $env:username, using the default image instead \\$env:USERDNSDOMAIN\NETLOGON\defaultuser.jpg"
         $user_photo = [byte[]](Get-Content "\\$env:USERDNSDOMAIN\NETLOGON\defaultuser.jpg" -Encoding byte)
     }
@@ -88,10 +79,8 @@ if (Test-Connection -Computername $env:USERDNSDOMAIN -BufferSize 16 -Count 1 -Qu
         $user_photo | set-content $temp\$domain+$username.jpg -Encoding byte
         $command = "\\$env:USERDNSDOMAIN\NETLOGON\usertile.exe $domain\$username $temp\$domain+$username.jpg"
         ([wmiclass]"win32_process").create($command)   
-=======
         Write-Verbose "No photo found in Active Directory for $env:username, using the default image instead"
         $user_photo = [byte[]](Get-Content "\\$env:USERDNSDOMAIN\NETLOGON\defaultuser.jpg" -Encoding byte)
->>>>>>> origin/master
     }
     
     # Set up image sizes and base path
@@ -132,10 +121,7 @@ else
 {
     Write-Verbose "PC can't connect to $env:USERDNSDOMAIN, PC is offline or connceted to another network."
 }
-<<<<<<< HEAD
 else
 {
     Write-Verbose "PC can't connect to $env:USERDNSDOMAIN, PC is offline or connceted to another network."
 }
-=======
->>>>>>> origin/master
