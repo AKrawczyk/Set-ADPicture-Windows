@@ -6,4 +6,4 @@ If you are running AD version 2008 please set the registry permission using the 
 Set-ADPicture-ACL.ps1</br>
 Set-ADPicture-ACL.vbs</br>
 Set User Group Policy to allow script to run at log on</br>
-Copy usertile.exe to \\DOMAIN\NETLOGON if you wish to set WIndows 7 user tiles<br>
+Copy usertile.exe to \\\DOMAIN\NETLOGON if you wish to set WIndows 7 user tiles<br>
